@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# StadiumBuddy – AI Stadium Companion for FIFA World Cup 2026
 
-## Getting Started
+StadiumBuddy is a fast, zero-login, AI-enabled stadium companion designed to help fans navigate stadium venues during the FIFA World Cup 2026. This repository hosts the Phase 1 static UI scaffolding.
 
-First, run the development server:
+## 🚀 Tech Stack
+- **Framework:** Next.js 16.2 (App Router)
+- **Language:** TypeScript (Strict Mode)
+- **Styling:** Tailwind CSS v4 & shadcn/ui
+- **Icons:** Lucide Icons
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 📁 Folder Structure
+The repository is structured as follows:
+```text
+app/          # App router pages, global styles, and layout config
+components/   # Reusable layouts, UI elements, and feature previews
+lib/          # Shared helper utilities (e.g. cn for tailwind classes)
+data/         # Static tournament data and local information
+types/        # Custom TypeScript type definitions
+tests/        # Automated tests suite
+public/       # Public-facing assets and images
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🏟 Design System & Aesthetics
+StadiumBuddy is styled with a custom dark-mode aesthetic utilizing modern OKLCH color definitions:
+- **Pitch Green Accent:** Highlighting major components, tags, and interactive buttons.
+- **Obsidian / Slate Gray Base:** Providing an elegant dark backdrop that mimics premium AI platforms.
+- **Glassmorphism:** Navigation menus and overlays utilize backdrop filters and soft borders.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ⚙️ Development & Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Run the Dev Server
+To start the local development environment:
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) to view the page.
 
-## Learn More
+### Linting Checks
+To perform static analysis checks:
+```bash
+npm run lint
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Production Build
+To verify type checks and compile the static bundle for Vercel/GitHub pages:
+```bash
+npm run build
+```
+The output will be created inside the `.next/` directory. This project is prepared for immediate deployment to Vercel or GitHub Pages.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
