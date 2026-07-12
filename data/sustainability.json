@@ -1,0 +1,30 @@
+[
+  {
+    "transportType": "Express Metro Line 1",
+    "co2SavedKg": 3.4,
+    "greenScore": 92,
+    "environmentalImpact": "Low Carbon Footprint",
+    "recommendation": "Highly Recommended. Electric rapid rail reduces greenhouse emissions per passenger by up to 85% compared to private vehicles."
+  },
+  {
+    "transportType": "FIFA Tournament Shuttle Bus",
+    "co2SavedKg": 2.1,
+    "greenScore": 80,
+    "environmentalImpact": "Hybrid Fleet Transit",
+    "recommendation": "Recommended. Group transit reduces highway congestion and utilizes low-emission hybrid shuttle fleets."
+  },
+  {
+    "transportType": "App-Based Rideshare & Taxi",
+    "co2SavedKg": 0.0,
+    "greenScore": 35,
+    "environmentalImpact": "High Carbon Footprint",
+    "recommendation": "Consider alternatives. Private combustion engines generate significant per-fan carbon footprints. Select EV class when booking if necessary."
+  },
+  {
+    "transportType": "Pedestrian Fans Boulevard",
+    "co2SavedKg": 4.8,
+    "greenScore": 100,
+    "environmentalImpact": "Zero Emissions",
+    "recommendation": "Perfect environmental choice. Walking creates zero emissions and improves cardiovascular health. Combine with rail transit."
+  }
+]

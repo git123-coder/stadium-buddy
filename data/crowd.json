@@ -1,0 +1,38 @@
+[
+  {
+    "gateId": "gate-a",
+    "crowdLevel": "Low",
+    "estimatedWaitMinutes": 10,
+    "lastUpdated": "2026-07-12T12:20:00Z"
+  },
+  {
+    "gateId": "gate-b",
+    "crowdLevel": "Medium",
+    "estimatedWaitMinutes": 25,
+    "lastUpdated": "2026-07-12T12:20:00Z"
+  },
+  {
+    "gateId": "gate-c",
+    "crowdLevel": "High",
+    "estimatedWaitMinutes": 45,
+    "lastUpdated": "2026-07-12T12:20:00Z"
+  },
+  {
+    "gateId": "gate-d",
+    "crowdLevel": "Low",
+    "estimatedWaitMinutes": 15,
+    "lastUpdated": "2026-07-12T12:20:00Z"
+  },
+  {
+    "gateId": "gate-e",
+    "crowdLevel": "Medium",
+    "estimatedWaitMinutes": 30,
+    "lastUpdated": "2026-07-12T12:20:00Z"
+  },
+  {
+    "gateId": "gate-vip",
+    "crowdLevel": "Low",
+    "estimatedWaitMinutes": 5,
+    "lastUpdated": "2026-07-12T12:20:00Z"
+  }
+]

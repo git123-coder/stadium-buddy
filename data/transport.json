@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Express Metro Line 1",
+    "estimatedTimeMinutes": 25,
+    "estimatedCost": "$2.50",
+    "crowdLevel": "High",
+    "availability": "Every 3 minutes",
+    "recommendedFor": "Fast transit to city center, avoiding traffic bottlenecks"
+  },
+  {
+    "name": "FIFA Tournament Shuttle Bus",
+    "estimatedTimeMinutes": 35,
+    "estimatedCost": "Free (with Match Ticket)",
+    "crowdLevel": "Medium",
+    "availability": "Every 8 minutes",
+    "recommendedFor": "Direct transit to regional hotel zones and park-and-ride areas"
+  },
+  {
+    "name": "App-Based Rideshare & Taxi",
+    "estimatedTimeMinutes": 40,
+    "estimatedCost": "$30.00",
+    "crowdLevel": "Low",
+    "availability": "On-demand at North Gate taxi ranks",
+    "recommendedFor": "Groups with heavy luggage, or those requiring direct door-to-door transit"
+  },
+  {
+    "name": "Pedestrian Fans Boulevard",
+    "estimatedTimeMinutes": 15,
+    "estimatedCost": "Free",
+    "crowdLevel": "Medium",
+    "availability": "Always open",
+    "recommendedFor": "Fans walking to adjacent Parking Zone 1, local hotels, or nearby cycle hubs"
+  }
+]

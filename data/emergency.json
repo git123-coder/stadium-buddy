@@ -1,0 +1,25 @@
+{
+  "medicalHelp": {
+    "location": "South Stand Concourse, Near Block 132 (Gate C)",
+    "contactNumber": "+1 (555) 911-0026",
+    "instructions": "For severe medical concerns, look for roaming medics in neon vests, head directly to Section 132 First Aid Center, or call the stadium emergency helpline immediately."
+  },
+  "security": {
+    "location": "North Stand Control Room, Near Block 102 (Gate A)",
+    "contactNumber": "+1 (555) 911-0080",
+    "instructions": "Alert nearest safety steward in high-visibility uniforms or go to security desk at Gate A lobby to report security concerns."
+  },
+  "lostChildCenter": {
+    "location": "Family Activity Zone, North-West Stand, Block 155 (Gate E)",
+    "procedure": "If you find a lost child or are separated from your child, contact the nearest steward immediately. They will escort children to the Lost Child Center at Gate E for safe reunification."
+  },
+  "emergencyExitLocations": [
+    "Exit Alpha (North, Gate A)",
+    "Exit Bravo (East, Gate B)",
+    "Exit Charlie (South, Gate C)",
+    "Exit Delta (West, Gate D)",
+    "Exit Echo (North-West, Gate E)"
+  ],
+  "assemblyArea": "Main Plaza Area (Outside gate A and B parking fields)",
+  "emergencyPhone": "+1 (555) 911-2026"
+}

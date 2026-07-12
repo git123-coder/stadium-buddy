@@ -1,0 +1,105 @@
+{
+  "accessibleEntrances": [
+    "gate-a",
+    "gate-c",
+    "gate-e",
+    "gate-vip"
+  ],
+  "elevators": [
+    {
+      "id": "elv-north",
+      "location": "North Stand, Near Gate A",
+      "servesSections": [
+        "Blocks 100-112",
+        "Wheelchair Row N1"
+      ]
+    },
+    {
+      "id": "elv-south",
+      "location": "South Stand, Near Gate C",
+      "servesSections": [
+        "Blocks 126-138",
+        "Wheelchair Row S1"
+      ]
+    },
+    {
+      "id": "elv-west-vip",
+      "location": "West Stand, VIP Gate Entrance",
+      "servesSections": [
+        "VIP Suites",
+        "Press Pavilion"
+      ]
+    }
+  ],
+  "wheelchairRoutes": [
+    {
+      "routeId": "route-gate-a-to-seats",
+      "fromLocation": "Gate A Entrance",
+      "toLocation": "North Stand Blocks 100-104 Wheelchair Area",
+      "description": "Flat paved path from Gate A ticketing queue, through Elevator North to Row N1 seating. Fully ramped, zero stairs."
+    },
+    {
+      "routeId": "route-gate-c-to-seats",
+      "fromLocation": "Gate C Entrance",
+      "toLocation": "South Stand Blocks 128-132 Wheelchair Area",
+      "description": "Ramped pathway from Gate C entrance lobby directly to ground level wheelchair deck. Assistance point available at entry."
+    }
+  ],
+  "accessibleRestrooms": [
+    {
+      "id": "restroom-north",
+      "location": "North Stand Concourse, block 105",
+      "hasChangingTable": true
+    },
+    {
+      "id": "restroom-south",
+      "location": "South Stand Concourse, block 130",
+      "hasChangingTable": true
+    },
+    {
+      "id": "restroom-vip",
+      "location": "VIP Level Suite Lounge",
+      "hasChangingTable": true
+    }
+  ],
+  "medicalStations": [
+    {
+      "id": "med-station-main",
+      "location": "South Stand Concourse, Near Gate C",
+      "equipments": [
+        "Defibrillator (AED)",
+        "Oxygen",
+        "Trauma Kit",
+        "Wheelchairs"
+      ]
+    },
+    {
+      "id": "med-station-north",
+      "location": "North Stand Concourse, Block 108",
+      "equipments": [
+        "Defibrillator (AED)",
+        "First Aid Kits"
+      ]
+    }
+  ],
+  "assistancePoints": [
+    {
+      "id": "assist-desk-a",
+      "location": "Main Entrance Lobby inside Gate A",
+      "services": [
+        "Wheelchair Escort",
+        "Sensory Room Access Badges",
+        "Audio Descriptive Commentary Receivers"
+      ]
+    },
+    {
+      "id": "assist-desk-c",
+      "location": "Accessibility Services Hub, Near Gate C",
+      "services": [
+        "Wheelchair Escort",
+        "Sign Language Interpreter Services",
+        "Stroller Check-in"
+      ]
+    }
+  ]
+}

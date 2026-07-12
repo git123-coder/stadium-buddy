@@ -1,0 +1,92 @@
+[
+  {
+    "id": "gate-a",
+    "name": "Gate A",
+    "stadiumSectionServed": "North Stand, Blocks 100-112",
+    "walkingTimeMinutes": 8,
+    "estimatedWaitMinutes": 10,
+    "crowdLevel": "Low",
+    "accessible": true,
+    "nearbyLandmarks": [
+      "Fan Zone North",
+      "Parking Zone 1",
+      "Uber Drop-off North"
+    ],
+    "alternativeGate": "gate-b"
+  },
+  {
+    "id": "gate-b",
+    "name": "Gate B",
+    "stadiumSectionServed": "East Stand, Blocks 113-125",
+    "walkingTimeMinutes": 12,
+    "estimatedWaitMinutes": 25,
+    "crowdLevel": "Medium",
+    "accessible": false,
+    "nearbyLandmarks": [
+      "Main Food Court",
+      "Ticket Office East",
+      "Bus Terminal East"
+    ],
+    "alternativeGate": "gate-a"
+  },
+  {
+    "id": "gate-c",
+    "name": "Gate C",
+    "stadiumSectionServed": "South Stand, Blocks 126-138",
+    "walkingTimeMinutes": 15,
+    "estimatedWaitMinutes": 45,
+    "crowdLevel": "High",
+    "accessible": true,
+    "nearbyLandmarks": [
+      "Merchandise MegaStore",
+      "Metro Station South Exit",
+      "Main Medical Center"
+    ],
+    "alternativeGate": "gate-d"
+  },
+  {
+    "id": "gate-d",
+    "name": "Gate D",
+    "stadiumSectionServed": "West Stand, Blocks 139-150",
+    "walkingTimeMinutes": 10,
+    "estimatedWaitMinutes": 15,
+    "crowdLevel": "Low",
+    "accessible": false,
+    "nearbyLandmarks": [
+      "Broadcasters Center",
+      "Press Pavilion",
+      "Bicycle Parking West"
+    ],
+    "alternativeGate": "gate-e"
+  },
+  {
+    "id": "gate-e",
+    "name": "Gate E",
+    "stadiumSectionServed": "North-West Stand, Blocks 151-160",
+    "walkingTimeMinutes": 14,
+    "estimatedWaitMinutes": 30,
+    "crowdLevel": "Medium",
+    "accessible": true,
+    "nearbyLandmarks": [
+      "Family Activity Zone",
+      "Shuttle Bus Stop North-West",
+      "Lost and Found Office"
+    ],
+    "alternativeGate": "gate-d"
+  },
+  {
+    "id": "gate-vip",
+    "name": "VIP Gate",
+    "stadiumSectionServed": "VIP Club Lounge & Suites",
+    "walkingTimeMinutes": 5,
+    "estimatedWaitMinutes": 5,
+    "crowdLevel": "Low",
+    "accessible": true,
+    "nearbyLandmarks": [
+      "Hospitality Pavilion",
+      "VIP Secured Parking",
+      "Main Press Box"
+    ],
+    "alternativeGate": "gate-a"
+  }
+]
