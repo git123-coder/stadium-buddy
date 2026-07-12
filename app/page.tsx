@@ -5,13 +5,13 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import FeatureCards from "@/components/FeatureCards";
 import Footer from "@/components/Footer";
-import ChatContainer from "@/components/Chat/ChatContainer";
+import DashboardLayout from "@/components/Chat/DashboardLayout";
 
 export default function Home() {
   const [showDemo, setShowDemo] = useState(false);
 
   if (showDemo) {
-    return <ChatContainer onBack={() => setShowDemo(false)} />;
+    return <DashboardLayout onBack={() => setShowDemo(false)} />;
   }
 
   return (

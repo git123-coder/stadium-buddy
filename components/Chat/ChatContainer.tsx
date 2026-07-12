@@ -3,13 +3,8 @@
 import React, { useState } from "react";
 import { Message } from "@/types/stadium";
 import { getRecommendation } from "@/lib/recommendationEngine";
-import ChatHeader from "./ChatHeader";
 import ChatMessages from "./ChatMessages";
 import ChatInput from "./ChatInput";
-
-interface ChatContainerProps {
-  onBack: () => void;
-}
 
 const INITIAL_MESSAGE: Message = {
   id: "welcome-message",
@@ -18,7 +13,7 @@ const INITIAL_MESSAGE: Message = {
   text: "👋 Welcome to StadiumBuddy.\n\nI'm your AI Stadium Companion.\n\nAsk me about:\n\n• Best gate\n• Crowd status\n• Accessibility\n• Transport\n• Sustainability\n• Emergency assistance"
 };
 
-export default function ChatContainer({ onBack }: ChatContainerProps) {
+export default function ChatContainer() {
   const [messages, setMessages] = useState<Message[]>([INITIAL_MESSAGE]);
   const [isTyping, setIsTyping] = useState(false);
 
@@ -76,10 +71,7 @@ export default function ChatContainer({ onBack }: ChatContainerProps) {
   };
 
   return (
-    <div className="flex flex-col h-screen w-full bg-background border-x border-border/10 max-w-7xl mx-auto shadow-2xl">
-      {/* Dynamic Header */}
-      <ChatHeader onBack={onBack} />
-
+    <div className="flex flex-col h-full w-full bg-background border-x border-border/10 max-w-7xl mx-auto">
       {/* Messages viewport */}
       <ChatMessages
         messages={messages}
