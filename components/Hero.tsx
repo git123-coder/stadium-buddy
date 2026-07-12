@@ -3,7 +3,11 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 
-export default function Hero() {
+interface HeroProps {
+  onTryDemo?: () => void;
+}
+
+export default function Hero({ onTryDemo }: HeroProps) {
   return (
     <section 
       className="relative flex flex-col items-center justify-center overflow-hidden py-20 text-center px-4 sm:px-6 lg:px-8"
@@ -40,6 +44,7 @@ export default function Hero() {
         {/* Action Buttons */}
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Button
+            onClick={onTryDemo}
             size="lg"
             className="h-12 px-8 bg-emerald-500 hover:bg-emerald-600 text-background font-semibold shadow-lg shadow-emerald-500/20 transition-all focus-visible:ring-2 focus-visible:ring-emerald-500 cursor-pointer"
             id="hero-try-demo"

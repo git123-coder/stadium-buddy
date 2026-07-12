@@ -3,7 +3,11 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 
-export default function Header() {
+interface HeaderProps {
+  onTryDemo?: () => void;
+}
+
+export default function Header({ onTryDemo }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -42,6 +46,7 @@ export default function Header() {
         {/* CTA Button */}
         <div className="flex items-center gap-4">
           <Button
+            onClick={onTryDemo}
             className="bg-emerald-500 hover:bg-emerald-600 text-background font-semibold cursor-pointer shadow-lg shadow-emerald-500/20 transition-all focus-visible:ring-2 focus-visible:ring-emerald-500"
             id="header-try-demo"
           >
