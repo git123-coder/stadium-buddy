@@ -40,11 +40,8 @@ export default function ChatMessages({
           <div className="flex flex-col flex-1 items-center justify-center py-6 space-y-6">
             {/* Welcome banner */}
             <div className="text-center max-w-lg space-y-2 select-none">
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-2">
-                🏟
-              </div>
               <h2 className="text-2xl font-bold tracking-tight text-foreground">
-                Welcome to {t("appTitle")}
+                🏟 Welcome to {t("appTitle")}
               </h2>
               <p className="text-[15px] text-body leading-relaxed">
                 {"I'm your AI Stadium Companion for the FIFA World Cup 2026. Ask me about stadium gates, crowd queue wait times, accessibility facilities, eco-friendly transit, or emergency help."}

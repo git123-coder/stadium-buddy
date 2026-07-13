@@ -39,11 +39,11 @@ export default function ChatInput({ onSendMessage, disabled }: ChatInputProps) {
   };
 
   return (
-    <form 
+    <form
       onSubmit={handleSubmit}
       className="border-t border-border/40 bg-background/90 p-4 backdrop-blur-md"
     >
-      <div className="mx-auto max-w-3xl flex items-end gap-2 rounded-xl border border-border bg-card/60 px-3 py-2.5 focus-within:ring-1 focus-within:ring-emerald-500 focus-within:border-emerald-500 transition-all">
+      <div className="mx-auto max-w-3xl flex items-end gap-2 rounded-xl border border-emerald-500/60 bg-card/60 px-3 py-2.5 shadow-[0_0_8px_rgba(16,185,129,0.2)] focus-within:ring-1 focus-within:ring-emerald-500 focus-within:border-emerald-400 transition-all">
         <textarea
           ref={textareaRef}
           rows={1}
@@ -65,9 +65,7 @@ export default function ChatInput({ onSendMessage, disabled }: ChatInputProps) {
           <Send className="h-4 w-4" />
         </Button>
       </div>
-      <p className="text-[10px] text-center text-muted-text/70 mt-2 select-none">
-        StadiumBuddy is a static AI guide. Real-time data is simulated for tournament operations testing.
-      </p>
+
     </form>
   );
 }

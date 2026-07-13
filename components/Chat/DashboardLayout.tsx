@@ -72,8 +72,8 @@ export default function DashboardLayout({ onBack, initialTab }: DashboardLayoutP
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
                 className={`w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-semibold cursor-pointer transition-colors ${isActive
-                    ? "bg-emerald-500 text-background"
-                    : "text-muted-foreground hover:text-foreground hover:bg-secondary/60"
+                  ? "bg-emerald-500 text-background"
+                  : "text-muted-foreground hover:text-foreground hover:bg-secondary/60"
                   }`}
               >
                 <Icon className="h-4.5 w-4.5" />
@@ -89,9 +89,9 @@ export default function DashboardLayout({ onBack, initialTab }: DashboardLayoutP
             <LanguageToggle />
           </div>
           <Button
-            variant="ghost"
+            variant="outline"
             onClick={onBack}
-            className="w-full flex items-center justify-start gap-3 text-muted-foreground hover:text-foreground cursor-pointer"
+            className="h-9 px-3 border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/10 cursor-pointer font-semibold"
           >
             <ArrowLeft className="h-4.5 w-4.5" />
             Back to Home

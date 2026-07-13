@@ -52,7 +52,7 @@ export default function ChatContainer() {
         setMessages((prev) => [...prev, assistantMsg]);
       } catch (error) {
         console.error("Recommendation Engine Error:", error);
-        
+
         // Graceful fallback display
         const errorMsg: Message = {
           id: `msg-${Date.now()}-error`,
