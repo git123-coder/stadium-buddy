@@ -82,11 +82,47 @@ export function getRecommendation(question: string): RecommendationResponse {
  */
 function handleGateRecommendation(question: string): RecommendationResponse {
   const gates = getGates();
-  const isAccessibilityRequest = containsAny(question, [
+  const lowerQ = question.toLowerCase();
+
+  // 1. Identify section and its primary gate
+  let targetSectionGateId = "";
+  if (lowerQ.includes("100-112") || lowerQ.includes("100")) targetSectionGateId = "gate-a";
+  else if (lowerQ.includes("113-125") || lowerQ.includes("113") || lowerQ.includes("120")) targetSectionGateId = "gate-b";
+  else if (lowerQ.includes("126-138") || lowerQ.includes("126") || lowerQ.includes("130")) targetSectionGateId = "gate-c";
+  else if (lowerQ.includes("139-150") || lowerQ.includes("139") || lowerQ.includes("140")) targetSectionGateId = "gate-d";
+  else if (lowerQ.includes("151-160") || lowerQ.includes("151") || lowerQ.includes("155")) targetSectionGateId = "gate-e";
+  else if (lowerQ.includes("vip") || lowerQ.includes("suites") || lowerQ.includes("lounge")) targetSectionGateId = "gate-vip";
+
+  // 2. Identify arrival plaza
+  let arrivalPlaza = "north"; // default fallback
+  if (lowerQ.includes("east")) arrivalPlaza = "east";
+  else if (lowerQ.includes("south")) arrivalPlaza = "south";
+  else if (lowerQ.includes("west")) arrivalPlaza = "west";
+
+  // 3. Identify priority request
+  const isAccessibilityRequest = containsAny(lowerQ, [
     "accessible", "wheelchair", "disabled", "elevator", "lift", "ramp", "assistance"
   ]);
+  const isLeastCrowded = containsAny(lowerQ, ["least crowded", "lowest crowd"]);
+  const isClosest = containsAny(lowerQ, ["closest", "nearest", "minimal walking"]);
 
-  // Filter accessible gates if requested
+  const plazaDistances: Record<string, Record<string, number>> = {
+    north: { "gate-a": 2, "gate-b": 10, "gate-c": 15, "gate-d": 10, "gate-e": 5, "gate-vip": 3 },
+    east: { "gate-a": 10, "gate-b": 2, "gate-c": 10, "gate-d": 15, "gate-e": 12, "gate-vip": 8 },
+    south: { "gate-a": 15, "gate-b": 10, "gate-c": 2, "gate-d": 10, "gate-e": 12, "gate-vip": 10 },
+    west: { "gate-a": 10, "gate-b": 15, "gate-c": 10, "gate-d": 2, "gate-e": 4, "gate-vip": 8 }
+  };
+
+  const crowdLevelValue = (level: string): number => {
+    switch (level.toLowerCase()) {
+      case "low": return 1;
+      case "medium": return 2;
+      case "high": return 3;
+      default: return 9;
+    }
+  };
+
+  // Filter candidates (accessible candidates if requested)
   const candidates = isAccessibilityRequest 
     ? gates.filter(g => g.accessible) 
     : gates;
@@ -101,29 +137,78 @@ function handleGateRecommendation(question: string): RecommendationResponse {
     };
   }
 
-  // Recommendation sorting logic:
-  // 1. Lower wait time is preferred.
-  // 2. Lower walking time is a tie-breaker.
+  // Sort candidates dynamically according to priorities
   const sorted = [...candidates].sort((a, b) => {
+    const distA = plazaDistances[arrivalPlaza]?.[a.id] || 10;
+    const distB = plazaDistances[arrivalPlaza]?.[b.id] || 10;
+    const walkA = distA + (a.id === targetSectionGateId ? 0 : 8);
+    const walkB = distB + (b.id === targetSectionGateId ? 0 : 8);
+
+    if (isAccessibilityRequest) {
+      const servesA = a.id === targetSectionGateId ? 0 : 1;
+      const servesB = b.id === targetSectionGateId ? 0 : 1;
+      if (servesA !== servesB) return servesA - servesB;
+      return walkA - walkB;
+    }
+
+    if (isLeastCrowded) {
+      const crowdA = crowdLevelValue(a.crowdLevel);
+      const crowdB = crowdLevelValue(b.crowdLevel);
+      if (crowdA !== crowdB) return crowdA - crowdB;
+      const servesA = a.id === targetSectionGateId ? 0 : 1;
+      const servesB = b.id === targetSectionGateId ? 0 : 1;
+      if (servesA !== servesB) return servesA - servesB;
+      return a.estimatedWaitMinutes - b.estimatedWaitMinutes;
+    }
+
+    if (isClosest) {
+      if (walkA !== walkB) return walkA - walkB;
+      return a.estimatedWaitMinutes - b.estimatedWaitMinutes;
+    }
+
+    // Default / fastest entry
+    const waitDiff = a.estimatedWaitMinutes - b.estimatedWaitMinutes;
+    const servesA = a.id === targetSectionGateId ? 0 : 1;
+    const servesB = b.id === targetSectionGateId ? 0 : 1;
+    
+    if (servesA !== servesB) {
+      if (Math.abs(waitDiff) < 15) {
+        return servesA - servesB;
+      }
+    }
+    
     if (a.estimatedWaitMinutes !== b.estimatedWaitMinutes) {
       return a.estimatedWaitMinutes - b.estimatedWaitMinutes;
     }
-    return a.walkingTimeMinutes - b.walkingTimeMinutes;
+    return walkA - walkB;
   });
 
   const bestGate = sorted[0];
   const altGateId = bestGate.alternativeGate;
   const altGate = gates.find(g => g.id === altGateId) || sorted[1] || bestGate;
 
-  let recommendationText = "";
+  let priorityLabel = "Fastest Entry";
+  if (isLeastCrowded) priorityLabel = "Least Crowded";
+  else if (isClosest) priorityLabel = "Closest Gate";
+  else if (isAccessibilityRequest) priorityLabel = "Accessible Route";
+
+  let sectionLabel = "your section";
+  if (targetSectionGateId === "gate-a") sectionLabel = "North Stand (Blocks 100-112)";
+  else if (targetSectionGateId === "gate-b") sectionLabel = "East Stand (Blocks 113-125)";
+  else if (targetSectionGateId === "gate-c") sectionLabel = "South Stand (Blocks 126-138)";
+  else if (targetSectionGateId === "gate-d") sectionLabel = "West Stand (Blocks 139-150)";
+  else if (targetSectionGateId === "gate-e") sectionLabel = "North-West Stand (Blocks 151-160)";
+  else if (targetSectionGateId === "gate-vip") sectionLabel = "VIP Club Lounge & Suites";
+
+  const arrivalLabel = arrivalPlaza.charAt(0).toUpperCase() + arrivalPlaza.slice(1) + " Plaza";
+
+  const recommendationText = `${bestGate.name} is recommended.`;
   let explanationText = "";
 
   if (isAccessibilityRequest) {
-    recommendationText = `${bestGate.name} is recommended.`;
-    explanationText = `Since you requested accessibility, ${bestGate.name} is selected because it is fully accessible, serves your section (${bestGate.stadiumSectionServed}), and has the shortest wait time (${bestGate.estimatedWaitMinutes} minutes) with ${bestGate.crowdLevel} crowd levels. If conditions change, the best accessible alternative is ${altGate.name}.`;
+    explanationText = `For accessible entry serving ${sectionLabel} from ${arrivalLabel}, ${bestGate.name} is recommended. It is fully accessible, has an estimated wait time of ${bestGate.estimatedWaitMinutes} minutes with ${bestGate.crowdLevel} crowd levels. If queue conditions degrade, your best alternative is ${altGate.name}.`;
   } else {
-    recommendationText = `${bestGate.name} is recommended.`;
-    explanationText = `${bestGate.name} is recommended because it currently has the shortest estimated wait time (${bestGate.estimatedWaitMinutes} minutes), ${bestGate.crowdLevel} crowd levels, and serves your stadium section (${bestGate.stadiumSectionServed}). If conditions change, ${altGate.name} is the best alternative.`;
+    explanationText = `Based on your request for ${priorityLabel} serving ${sectionLabel} from ${arrivalLabel}, ${bestGate.name} is recommended. It currently has a wait of ${bestGate.estimatedWaitMinutes} minutes and a ${bestGate.crowdLevel} crowd level. If conditions change, we advise using ${altGate.name} as the alternative.`;
   }
 
   return {
@@ -262,8 +347,100 @@ function handleAccessibility(question: string): RecommendationResponse {
 function handleTransport(question: string): RecommendationResponse {
   const options = getTransportOptions();
   const sustain = getSustainabilityData();
+  const queryLower = question.toLowerCase();
 
-  // Find if they mentioned a specific transit mode
+  // Helper to parse numeric cost from string
+  const parseCost = (costStr: string): number => {
+    const clean = costStr.toLowerCase();
+    if (clean.includes("free")) return 0;
+    const match = costStr.match(/\$?([0-9.]+)/);
+    return match ? parseFloat(match[1]) : 999;
+  };
+
+  // Helper to map crowd level string to a numeric value
+  const crowdScore = (level: string): number => {
+    switch (level.toLowerCase()) {
+      case "low": return 1;
+      case "medium": return 2;
+      case "high": return 3;
+      default: return 99;
+    }
+  };
+
+  // 1. Check if user is asking for fastest
+  if (containsAny(queryLower, ["fastest", "fast", "quick", "speed"])) {
+    const sortedByTime = [...options].sort((a, b) => a.estimatedTimeMinutes - b.estimatedTimeMinutes);
+    const fastest = sortedByTime[0];
+    const nextFastest = sortedByTime[1];
+    return {
+      intent: "transport",
+      success: true,
+      title: "Fastest Transit Option",
+      recommendation: `${fastest.name} is the fastest option, taking ${fastest.estimatedTimeMinutes} minutes.`,
+      explanation: `${fastest.name} has the shortest travel time of ${fastest.estimatedTimeMinutes} minutes. If motorized transport is preferred, ${nextFastest.name} takes ${nextFastest.estimatedTimeMinutes} minutes.`,
+      metadata: {
+        recommendedTransit: fastest,
+        allTransitOptions: options
+      }
+    };
+  }
+
+  // 2. Check if user is asking for cheapest
+  if (containsAny(queryLower, ["cheapest", "cheap", "cost", "price", "fare", "economic"])) {
+    const sortedByCost = [...options].sort((a, b) => parseCost(a.estimatedCost) - parseCost(b.estimatedCost));
+    const cheapest = sortedByCost[0];
+    const freeOptions = options.filter(o => parseCost(o.estimatedCost) === 0);
+    const recommendationText = freeOptions.length > 0
+      ? `${freeOptions.map(o => o.name).join(" and ")} are the cheapest options (Free).`
+      : `${cheapest.name} is the cheapest option (${cheapest.estimatedCost}).`;
+    return {
+      intent: "transport",
+      success: true,
+      title: "Cheapest Transit Option",
+      recommendation: recommendationText,
+      explanation: `Pedestrian walking paths and the FIFA Tournament Shuttle Bus are free of charge. For rapid rail transit, Express Metro Line 1 costs only $2.50. App-Based Rideshare & Taxi is the most expensive at $30.00.`,
+      metadata: {
+        recommendedTransit: cheapest,
+        allTransitOptions: options
+      }
+    };
+  }
+
+  // 3. Check if user is asking for lowest crowd
+  if (containsAny(queryLower, ["lowest crowd", "least crowded", "crowd", "congestion", "busy", "queue"])) {
+    const sortedByCrowd = [...options].sort((a, b) => crowdScore(a.crowdLevel) - crowdScore(b.crowdLevel));
+    const lowestCrowd = sortedByCrowd[0];
+    return {
+      intent: "transport",
+      success: true,
+      title: "Least Congested Transit",
+      recommendation: `${lowestCrowd.name} currently has the lowest crowd density (${lowestCrowd.crowdLevel}).`,
+      explanation: `${lowestCrowd.name} currently has a "${lowestCrowd.crowdLevel}" crowd level, making it the most comfortable option. However, it takes ${lowestCrowd.estimatedTimeMinutes} minutes and costs ${lowestCrowd.estimatedCost}.`,
+      metadata: {
+        recommendedTransit: lowestCrowd,
+        allTransitOptions: options
+      }
+    };
+  }
+
+  // 4. Check if user is asking for most sustainable
+  if (containsAny(queryLower, ["sustainable", "sustainability", "eco", "green", "carbon", "co2", "emission"])) {
+    const sortedByGreen = [...sustain].sort((a, b) => b.greenScore - a.greenScore);
+    const greenest = sortedByGreen[0];
+    const nextGreenest = sortedByGreen[1];
+    return {
+      intent: "transport",
+      success: true,
+      title: "Most Sustainable Transit Option",
+      recommendation: `${greenest.transportType} is the most eco-friendly transit.`,
+      explanation: `${greenest.transportType} is the greenest choice with a perfect Green Score of ${greenest.greenScore}/100, saving ${greenest.co2SavedKg} kg of CO₂ emissions. The next best alternative is ${nextGreenest.transportType} with a Green Score of ${nextGreenest.greenScore}/100.`,
+      metadata: {
+        sustainabilityRankings: sortedByGreen
+      }
+    };
+  }
+
+  // 5. Find if they mentioned a specific transit mode
   let matchedOption: TransportOption | undefined;
   if (containsAny(question, ["metro", "subway", "train"])) {
     matchedOption = options.find(o => o.name.toLowerCase().includes("metro"));

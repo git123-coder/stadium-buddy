@@ -59,6 +59,16 @@ const KEYWORDS: Record<IntentType, string[]> = {
     "transit",
     "how to get to",
     "getting there",
+    "fastest",
+    "cheapest",
+    "lowest crowd",
+    "least crowded",
+    "travel",
+    "route",
+    "options",
+    "option",
+    "fastest route",
+    "cheapest option"
   ],
   sustainability: [
     "eco",
