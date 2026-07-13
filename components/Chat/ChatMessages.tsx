@@ -6,6 +6,8 @@ import ChatBubble from "./ChatBubble";
 import SuggestedPrompts from "./SuggestedPrompts";
 import QuickActionChips from "./QuickActionChips";
 import TypingIndicator from "./TypingIndicator";
+import EmergencyCards from "./EmergencyCards";
+import { useLanguage } from "@/lib/LanguageContext";
 
 interface ChatMessagesProps {
   messages: Message[];
@@ -21,6 +23,7 @@ export default function ChatMessages({
   onSelectAction,
 }: ChatMessagesProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   // Auto scroll to bottom when new messages are added or when typing state changes
   useEffect(() => {
@@ -41,7 +44,7 @@ export default function ChatMessages({
                 🏟
               </div>
               <h2 className="text-2xl font-bold tracking-tight text-foreground">
-                Welcome to StadiumBuddy
+                Welcome to {t("appTitle")}
               </h2>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 {"I'm your AI Stadium Companion for the FIFA World Cup 2026. Ask me about stadium gates, crowd queue wait times, accessibility facilities, eco-friendly transit, or emergency help."}
@@ -54,6 +57,12 @@ export default function ChatMessages({
             {/* Quick Action Chips list */}
             <QuickActionChips
               onSelectAction={onSelectAction}
+              disabled={isTyping}
+            />
+
+            {/* Emergency Quick Action Cards */}
+            <EmergencyCards
+              onSelectEmergency={onSelectAction}
               disabled={isTyping}
             />
           </div>

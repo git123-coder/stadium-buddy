@@ -53,7 +53,7 @@ export default function SuggestedPrompts({ onSelectPrompt }: SuggestedPromptsPro
             <button
               key={idx}
               onClick={() => onSelectPrompt(p.text)}
-              className={`flex items-start gap-3 rounded-xl border p-3.5 text-left cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${p.color}`}
+              className={`flex items-start gap-3 rounded-xl border p-3.5 text-left cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${p.color}`}
             >
               <div className="mt-0.5 rounded-lg bg-background/55 p-1.5 ring-1 ring-border/50 shrink-0">
                 <Icon className="h-4 w-4" />

@@ -49,45 +49,98 @@
 }
 
 :root {
-  /* Premium Dark Theme by default */
-  --background: oklch(0.08 0.015 240);
+  /* Premium Dark Theme by default - Stadium Deep Sapphire / Obsidian */
+  --background: oklch(0.06 0.015 240);
   --foreground: oklch(0.96 0.01 240);
   
-  --card: oklch(0.12 0.015 240);
+  --card: oklch(0.09 0.015 240);
   --card-foreground: oklch(0.96 0.01 240);
   
-  --popover: oklch(0.1 0.015 240);
+  --popover: oklch(0.08 0.015 240);
   --popover-foreground: oklch(0.96 0.01 240);
   
-  /* Modern FIFA Green / Emerald Accent */
-  --primary: oklch(0.68 0.16 142);
-  --primary-foreground: oklch(0.08 0.015 240);
+  /* Modern FIFA Pitch Green Accent */
+  --primary: oklch(0.7 0.16 142);
+  --primary-foreground: oklch(0.06 0.015 240);
   
   /* Modern Slate / Gray */
-  --secondary: oklch(0.16 0.015 240);
+  --secondary: oklch(0.14 0.015 240);
   --secondary-foreground: oklch(0.9 0.01 240);
   
-  --muted: oklch(0.14 0.015 240);
-  --muted-foreground: oklch(0.6 0.01 240);
+  --muted: oklch(0.11 0.015 240);
+  --muted-foreground: oklch(0.58 0.01 240);
   
-  --accent: oklch(0.18 0.03 142 / 15%);
-  --accent-foreground: oklch(0.75 0.16 142);
+  --accent: oklch(0.16 0.03 142 / 15%);
+  --accent-foreground: oklch(0.76 0.16 142);
   
   --destructive: oklch(0.55 0.2 25);
   --destructive-foreground: oklch(0.98 0.01 240);
   
-  --border: oklch(0.16 0.015 240);
-  --input: oklch(0.16 0.015 240);
-  --ring: oklch(0.68 0.16 142 / 50%);
+  --border: oklch(0.14 0.015 240);
+  --input: oklch(0.14 0.015 240);
+  --ring: oklch(0.7 0.16 142 / 50%);
   
-  --radius: 0.75rem;
+  --radius: 0.85rem;
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring/50 transition-colors duration-200;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased selection:bg-emerald-500/20 selection:text-emerald-300;
   }
+}
+
+/* Custom Micro-interactions & Keyframe Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 5px oklch(0.7 0.16 142 / 15%); }
+  50% { box-shadow: 0 0 15px oklch(0.7 0.16 142 / 35%); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-up {
+  animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+/* Premium Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(0.16 0.015 240);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.7 0.16 142 / 30%);
 }

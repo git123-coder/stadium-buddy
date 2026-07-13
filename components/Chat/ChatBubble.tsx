@@ -58,7 +58,7 @@ export default function ChatBubble({ message }: ChatBubbleProps) {
 
   return (
     <div
-      className={`flex w-full items-start gap-3 my-4 ${
+      className={`flex w-full items-start gap-3 my-4 animate-slide-in ${
         isUser ? "justify-end" : "justify-start"
       }`}
     >

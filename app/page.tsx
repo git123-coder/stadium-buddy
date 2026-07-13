@@ -6,22 +6,32 @@ import Hero from "@/components/Hero";
 import FeatureCards from "@/components/FeatureCards";
 import Footer from "@/components/Footer";
 import DashboardLayout from "@/components/Chat/DashboardLayout";
+import { LanguageProvider } from "@/lib/LanguageContext";
+
+type TabType = "chat" | "gate" | "crowd" | "access" | "transit";
 
 export default function Home() {
-  const [showDemo, setShowDemo] = useState(false);
+  const [activeTab, setActiveTab] = useState<TabType | null>(null);
 
-  if (showDemo) {
-    return <DashboardLayout onBack={() => setShowDemo(false)} />;
+  if (activeTab !== null) {
+    return (
+      <LanguageProvider>
+        <DashboardLayout
+          initialTab={activeTab}
+          onBack={() => setActiveTab(null)}
+        />
+      </LanguageProvider>
+    );
   }
 
   return (
-    <>
-      <Header onTryDemo={() => setShowDemo(true)} />
+    <LanguageProvider>
+      <Header onTryDemo={() => setActiveTab("chat")} />
       <main className="flex-1">
-        <Hero onTryDemo={() => setShowDemo(true)} />
-        <FeatureCards />
+        <Hero onTryDemo={() => setActiveTab("chat")} />
+        <FeatureCards onSelectFeature={(tab) => setActiveTab(tab)} />
       </main>
       <Footer />
-    </>
+    </LanguageProvider>
   );
 }
