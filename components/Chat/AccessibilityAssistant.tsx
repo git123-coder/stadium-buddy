@@ -87,7 +87,7 @@ export default function AccessibilityAssistant() {
                 ♿ Step-Free Pathways
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3.5 pt-1 text-sm text-muted-foreground">
+            <CardContent className="space-y-3.5 pt-1 text-[15px] text-body">
               {data.wheelchairRoutes.map((r, i) => (
                 <div key={i} className="flex flex-col gap-0.5 border-b border-border/10 pb-2.5 last:border-b-0 last:pb-0">
                   <span className="font-semibold text-foreground">{r.fromLocation} to {r.toLocation}</span>
@@ -104,12 +104,12 @@ export default function AccessibilityAssistant() {
                 🛗 Stand Elevators
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3.5 pt-1 text-sm text-muted-foreground">
+            <CardContent className="space-y-3.5 pt-1 text-[15px] text-body">
               {data.elevators.map((e, i) => (
                 <div key={i} className="flex flex-col gap-0.5 border-b border-border/10 pb-2.5 last:border-b-0 last:pb-0">
                   <span className="font-semibold text-foreground uppercase text-xs text-emerald-400">{e.id}</span>
                   <span>Located at {e.location}</span>
-                  <span className="text-xs">Serves: {e.servesSections.join(", ")}</span>
+                  <span className="text-xs text-muted-text">Serves: {e.servesSections.join(", ")}</span>
                 </div>
               ))}
             </CardContent>
@@ -125,7 +125,7 @@ export default function AccessibilityAssistant() {
                 🚻 Accessible Restrooms
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3 pt-1 text-sm text-muted-foreground">
+            <CardContent className="space-y-3 pt-1 text-[15px] text-body">
               {data.accessibleRestrooms.map((r, i) => (
                 <div key={i} className="flex items-center justify-between border-b border-border/10 pb-2 last:border-b-0 last:pb-0">
                   <span>{r.location}</span>
@@ -146,11 +146,11 @@ export default function AccessibilityAssistant() {
                 ℹ️ Assistance Service Desks
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3.5 pt-1 text-sm text-muted-foreground">
+            <CardContent className="space-y-3.5 pt-1 text-[15px] text-body">
               {data.assistancePoints.map((a, i) => (
                 <div key={i} className="flex flex-col gap-0.5 border-b border-border/10 pb-2.5 last:border-b-0 last:pb-0">
                   <span className="font-semibold text-foreground">{a.location}</span>
-                  <span className="text-xs">Services: {a.services.join(", ")}</span>
+                  <span className="text-xs text-muted-text">Services: {a.services.join(", ")}</span>
                 </div>
               ))}
             </CardContent>

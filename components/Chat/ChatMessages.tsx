@@ -46,7 +46,7 @@ export default function ChatMessages({
               <h2 className="text-2xl font-bold tracking-tight text-foreground">
                 Welcome to {t("appTitle")}
               </h2>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-[15px] text-body leading-relaxed">
                 {"I'm your AI Stadium Companion for the FIFA World Cup 2026. Ask me about stadium gates, crowd queue wait times, accessibility facilities, eco-friendly transit, or emergency help."}
               </p>
             </div>

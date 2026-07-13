@@ -91,7 +91,7 @@ export default function CrowdDashboard() {
                 <CardHeader className="pb-2 flex flex-row items-center justify-between space-y-0">
                   <div>
                     <CardTitle className="text-lg font-bold">{gate.name}</CardTitle>
-                    <span className="text-[10px] text-muted-foreground">
+                    <span className="text-[11px] text-muted-text">
                       {gate.stadiumSectionServed.split(",")[0]}
                     </span>
                   </div>
@@ -113,7 +113,7 @@ export default function CrowdDashboard() {
                 <CardContent className="space-y-4 pt-1">
                   <div className="grid grid-cols-2 gap-2 text-center py-2.5 rounded-lg bg-secondary/35 border border-border/20">
                     <div className="flex flex-col">
-                      <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
+                      <span className="text-[9px] font-bold uppercase tracking-wider text-muted-text">
                         Wait Time
                       </span>
                       <span className="text-lg font-bold text-foreground">
@@ -121,7 +121,7 @@ export default function CrowdDashboard() {
                       </span>
                     </div>
                     <div className="flex flex-col border-l border-border/25">
-                      <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
+                      <span className="text-[9px] font-bold uppercase tracking-wider text-muted-text">
                         Crowd Level
                       </span>
                       <span

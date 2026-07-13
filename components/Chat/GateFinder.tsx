@@ -77,7 +77,7 @@ export default function GateFinder() {
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                 {/* Section Select */}
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="section-select" className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
+                  <label htmlFor="section-select" className="text-xs font-bold text-muted-text uppercase tracking-wider">
                     Stadium Section
                   </label>
                   <select
@@ -96,7 +96,7 @@ export default function GateFinder() {
 
                 {/* Arrival Select */}
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="arrival-select" className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
+                  <label htmlFor="arrival-select" className="text-xs font-bold text-muted-text uppercase tracking-wider">
                     Arrival Plaza
                   </label>
                   <select
@@ -115,7 +115,7 @@ export default function GateFinder() {
 
                 {/* Priority Select */}
                 <div className="flex flex-col gap-1.5">
-                  <label htmlFor="priority-select" className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
+                  <label htmlFor="priority-select" className="text-xs font-bold text-muted-text uppercase tracking-wider">
                     Fan Priority
                   </label>
                   <select

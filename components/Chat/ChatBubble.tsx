@@ -15,7 +15,7 @@ export default function ChatBubble({ message }: ChatBubbleProps) {
     if (!text) return null;
     const lines = text.split("\n");
     return (
-      <div className="space-y-2 mt-2">
+      <div className="space-y-2.5 mt-2.5">
         {lines.map((line, idx) => {
           const trimmed = line.trim();
           if (!trimmed) return null;
@@ -24,21 +24,21 @@ export default function ChatBubble({ message }: ChatBubbleProps) {
           if (trimmed.startsWith("•") || trimmed.startsWith("-") || trimmed.startsWith("*")) {
             const cleanLine = trimmed.replace(/^[•\-*]\s*/, "");
             return (
-              <ul key={idx} className="list-disc pl-5 space-y-1">
-                <li className="text-sm text-muted-foreground leading-relaxed">
+              <ul key={idx} className="list-disc pl-5 space-y-1.5">
+                <li className="text-[15px] sm:text-base text-body leading-relaxed">
                   {cleanLine}
                 </li>
               </ul>
             );
           }
 
-          // Check if it's semicolon-delimited lists (common in our accessibility responses)
+          // Check if it's Semicolon-delimited lists
           if (trimmed.includes("; ")) {
             const subLines = trimmed.split("; ");
             return (
-              <ul key={idx} className="list-disc pl-5 space-y-1 my-1">
+              <ul key={idx} className="list-disc pl-5 space-y-1.5 my-1.5">
                 {subLines.map((sub, sidx) => (
-                  <li key={sidx} className="text-sm text-muted-foreground leading-relaxed">
+                  <li key={sidx} className="text-[15px] sm:text-base text-body leading-relaxed">
                     {sub}
                   </li>
                 ))}
@@ -47,7 +47,7 @@ export default function ChatBubble({ message }: ChatBubbleProps) {
           }
 
           return (
-            <p key={idx} className="text-sm text-muted-foreground leading-relaxed">
+            <p key={idx} className="text-[15px] sm:text-base text-body leading-relaxed">
               {line}
             </p>
           );
@@ -73,26 +73,26 @@ export default function ChatBubble({ message }: ChatBubbleProps) {
       <div
         className={`max-w-[85%] rounded-2xl px-4 py-3 shadow-md transition-all duration-300 ${
           isUser
-            ? "rounded-tr-sm bg-emerald-500 text-background font-medium"
+            ? "rounded-tr-sm bg-emerald-500 text-background font-semibold"
             : "rounded-tl-sm border border-border/40 bg-card/60 backdrop-blur-sm"
         }`}
       >
         {isUser ? (
-          <p className="text-sm leading-relaxed whitespace-pre-wrap break-words">
+          <p className="text-[15px] sm:text-base leading-relaxed whitespace-pre-wrap break-words">
             {message.text}
           </p>
         ) : (
           <div className="flex flex-col">
             {/* Title / Intent Type */}
             {message.title && (
-              <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400/90 mb-1">
+              <span className="text-xs font-extrabold uppercase tracking-wider text-emerald-400 mb-1.5">
                 ⚡ {message.title}
               </span>
             )}
 
             {/* Main Recommendation Highlight Box */}
             {message.recommendation && (
-              <div className="my-1.5 rounded-lg border border-emerald-500/20 bg-emerald-500/5 px-3 py-2.5 text-sm font-semibold text-foreground leading-relaxed shadow-inner">
+              <div className="my-1.5 rounded-lg border border-emerald-500/20 bg-emerald-500/5 px-3 py-2.5 text-base sm:text-lg font-bold text-primary-text leading-relaxed shadow-inner">
                 {message.recommendation}
               </div>
             )}
@@ -103,7 +103,7 @@ export default function ChatBubble({ message }: ChatBubbleProps) {
               : renderExplanation(message.text)}
 
             {/* Timestamp */}
-            <span className="mt-2 text-[9px] text-muted-foreground/60 text-right self-end select-none">
+            <span className="mt-2 text-[10px] text-muted-text/75 text-right self-end select-none">
               {new Date(message.timestamp).toLocaleTimeString([], {
                 hour: "2-digit",
                 minute: "2-digit",

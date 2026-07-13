@@ -105,7 +105,7 @@ export default function TransitSustainability() {
                           </span>
                         )}
                       </div>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
+                      <p className="text-sm text-body leading-relaxed">
                         {t.recommendedFor}
                       </p>
                     </div>
@@ -114,18 +114,18 @@ export default function TransitSustainability() {
                     <div className="grid grid-cols-2 gap-4 sm:flex sm:items-center sm:gap-6 shrink-0 border-t border-border/20 pt-3 sm:border-t-0 sm:pt-0">
                       {/* Time */}
                       <div className="flex items-center gap-2">
-                        <Clock className="h-4 w-4 text-muted-foreground" />
+                        <Clock className="h-4 w-4 text-muted-text" />
                         <div className="flex flex-col">
-                          <span className="text-[9px] font-bold uppercase text-muted-foreground">Time</span>
+                          <span className="text-[9px] font-bold uppercase text-muted-text">Time</span>
                           <span className="text-sm font-bold text-foreground">{t.estimatedTimeMinutes}m</span>
                         </div>
                       </div>
 
                       {/* Cost */}
                       <div className="flex items-center gap-2">
-                        <DollarSign className="h-4 w-4 text-muted-foreground" />
+                        <DollarSign className="h-4 w-4 text-muted-text" />
                         <div className="flex flex-col">
-                          <span className="text-[9px] font-bold uppercase text-muted-foreground">Cost</span>
+                          <span className="text-[9px] font-bold uppercase text-muted-text">Cost</span>
                           <span className="text-sm font-bold text-foreground">{t.estimatedCost}</span>
                         </div>
                       </div>
@@ -135,7 +135,7 @@ export default function TransitSustainability() {
                         <div className="flex items-center gap-2">
                           <Leaf className="h-4 w-4 text-emerald-400" />
                           <div className="flex flex-col">
-                            <span className="text-[9px] font-bold uppercase text-muted-foreground">CO₂ Saved</span>
+                            <span className="text-[9px] font-bold uppercase text-muted-text">CO₂ Saved</span>
                             <span className="text-sm font-bold text-emerald-400">+{sustain.co2SavedKg}kg</span>
                           </div>
                         </div>
@@ -146,7 +146,7 @@ export default function TransitSustainability() {
                         <div className="flex items-center gap-2">
                           <Award className="h-4 w-4 text-emerald-400" />
                           <div className="flex flex-col">
-                            <span className="text-[9px] font-bold uppercase text-muted-foreground">Green Score</span>
+                            <span className="text-[9px] font-bold uppercase text-muted-text">Green Score</span>
                             <span className="text-sm font-bold text-foreground">{sustain.greenScore}/100</span>
                           </div>
                         </div>

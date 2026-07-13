@@ -50,7 +50,7 @@ export default function DashboardLayout({ onBack, initialTab }: DashboardLayoutP
   return (
     <div className="flex h-screen w-full bg-background overflow-hidden text-foreground">
       {/* 1. Desktop Sidebar Navigation */}
-      <aside 
+      <aside
         className="hidden md:flex flex-col w-64 border-r border-border/40 bg-card/40 backdrop-blur-sm p-4 select-none shrink-0"
         aria-label="Dashboard Sidebar"
       >
@@ -71,11 +71,10 @@ export default function DashboardLayout({ onBack, initialTab }: DashboardLayoutP
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-semibold cursor-pointer transition-colors ${
-                  isActive
+                className={`w-full flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-semibold cursor-pointer transition-colors ${isActive
                     ? "bg-emerald-500 text-background"
                     : "text-muted-foreground hover:text-foreground hover:bg-secondary/60"
-                }`}
+                  }`}
               >
                 <Icon className="h-4.5 w-4.5" />
                 {label}
@@ -138,7 +137,7 @@ export default function DashboardLayout({ onBack, initialTab }: DashboardLayoutP
         </main>
 
         {/* 3. Mobile Bottom navigation bar */}
-        <nav 
+        <nav
           className="flex md:hidden fixed bottom-0 left-0 right-0 h-20 pb-3 border-t border-border/40 bg-background/90 backdrop-blur-md items-center justify-around px-2 z-40 select-none"
           aria-label="Dashboard Bottom Tabs"
         >
@@ -150,9 +149,8 @@ export default function DashboardLayout({ onBack, initialTab }: DashboardLayoutP
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`flex flex-col items-center justify-center gap-0.5 w-12 cursor-pointer transition-colors ${
-                  isActive ? "text-emerald-400" : "text-muted-foreground hover:text-foreground"
-                }`}
+                className={`flex flex-col items-center justify-center gap-0.5 w-12 cursor-pointer transition-colors ${isActive ? "text-emerald-400" : "text-muted-foreground hover:text-foreground"
+                  }`}
               >
                 <Icon className="h-5 w-5" />
                 <span className="text-[9px] font-bold tracking-tight">{label.split(" ")[0]}</span>

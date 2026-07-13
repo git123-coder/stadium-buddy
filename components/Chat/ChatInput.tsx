@@ -65,7 +65,7 @@ export default function ChatInput({ onSendMessage, disabled }: ChatInputProps) {
           <Send className="h-4 w-4" />
         </Button>
       </div>
-      <p className="text-[10px] text-center text-muted-foreground/60 mt-2 select-none">
+      <p className="text-[10px] text-center text-muted-text/70 mt-2 select-none">
         StadiumBuddy is a static AI guide. Real-time data is simulated for tournament operations testing.
       </p>
     </form>
