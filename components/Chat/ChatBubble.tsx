@@ -3,6 +3,7 @@
 import React from "react";
 import { Message } from "@/types/stadium";
 import { Bot, User } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 interface ChatBubbleProps {
   message: Message;
@@ -58,9 +59,8 @@ export default function ChatBubble({ message }: ChatBubbleProps) {
 
   return (
     <div
-      className={`flex w-full items-start gap-3 my-4 animate-slide-in ${
-        isUser ? "justify-end" : "justify-start"
-      }`}
+      className={`flex w-full items-start gap-3 my-4 animate-slide-in ${isUser ? "justify-end" : "justify-start"
+        }`}
     >
       {/* Avatar for Assistant */}
       {!isUser && (
@@ -71,11 +71,10 @@ export default function ChatBubble({ message }: ChatBubbleProps) {
 
       {/* Bubble Container */}
       <div
-        className={`max-w-[85%] rounded-2xl px-4 py-3 shadow-md transition-all duration-300 ${
-          isUser
-            ? "rounded-tr-sm bg-emerald-500 text-background font-semibold"
-            : "rounded-tl-sm border border-border/40 bg-card/60 backdrop-blur-sm"
-        }`}
+        className={`max-w-[85%] rounded-2xl px-4 py-3 shadow-md transition-all duration-300 ${isUser
+          ? "rounded-tr-sm bg-emerald-500 text-background font-semibold"
+          : "rounded-tl-sm border border-border/40 bg-card/60 backdrop-blur-sm"
+          }`}
       >
         {isUser ? (
           <p className="text-[15px] sm:text-base leading-relaxed whitespace-pre-wrap break-words">
@@ -83,12 +82,30 @@ export default function ChatBubble({ message }: ChatBubbleProps) {
           </p>
         ) : (
           <div className="flex flex-col">
-            {/* Title / Intent Type */}
-            {message.title && (
-              <span className="text-xs font-extrabold uppercase tracking-wider text-emerald-400 mb-1.5">
-                ⚡ {message.title}
-              </span>
-            )}
+            {/* Header section with Title and Source Badge */}
+            <div className="flex items-center justify-between gap-3 mb-1.5">
+              {message.title ? (
+                <span className="text-xs font-extrabold uppercase tracking-wider text-emerald-400">
+                  ⚡ {message.title}
+                </span>
+              ) : (
+                <span />
+              )}
+              <Badge
+                variant="outline"
+                className="text-[10px] px-2 py-0.5 font-semibold border-border/40 bg-secondary/30 text-muted-foreground select-none shrink-0"
+              >
+                {(message.source || "engine") === "gemini" ? (
+                  <span className="flex items-center gap-1">
+                    <span className="text-[8px] text-emerald-400">🟢</span> AI Powered
+                  </span>
+                ) : (
+                  <span className="flex items-center gap-1">
+                    <span>⚙</span> Recommendation Engine
+                  </span>
+                )}
+              </Badge>
+            </div>
 
             {/* Main Recommendation Highlight Box */}
             {message.recommendation && (

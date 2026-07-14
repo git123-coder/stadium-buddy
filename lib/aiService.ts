@@ -16,11 +16,17 @@ export interface AIResponse extends RecommendationResponse {
  * @returns {Promise<AIResponse>} The AI-augmented or rule-based response.
  */
 export async function getAIResponse(question: string): Promise<AIResponse> {
+  console.log(`\nQuestion: ${question}`);
+
   // Get baseline recommendation engine response first (our single source of truth)
   const engineResponse = getRecommendation(question);
 
+  const isConfigured = isGeminiConfigured();
+  console.log(`isGeminiConfigured(): ${isConfigured}`);
+
   // If Gemini API is not configured, bypass calling Gemini entirely
-  if (!isGeminiConfigured()) {
+  if (!isConfigured) {
+    console.log("Returning source: engine");
     return {
       ...engineResponse,
       source: "engine",
@@ -31,9 +37,11 @@ export async function getAIResponse(question: string): Promise<AIResponse> {
     const { systemPrompt, userPrompt } = buildGeminiPrompt(question);
     const client = getGeminiClient();
 
+    console.log("Attempting Gemini call");
+
     // Call the model with a 5-second timeout safeguard
     const apiCall = client.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-flash-lite-latest",
       contents: userPrompt,
       config: {
         systemInstruction: systemPrompt,
@@ -47,6 +55,8 @@ export async function getAIResponse(question: string): Promise<AIResponse> {
     const response = await Promise.race([apiCall, timeoutPromise]);
 
     if (response && response.text) {
+      console.log("Gemini response received");
+      console.log("Returning source: gemini");
       return {
         ...engineResponse,
         explanation: response.text.trim(),
@@ -55,6 +65,7 @@ export async function getAIResponse(question: string): Promise<AIResponse> {
     }
 
     console.warn("[DEBUG] Gemini returned an empty response. Falling back to recommendation engine.");
+    console.log("Returning source: engine");
     return {
       ...engineResponse,
       source: "engine",
@@ -62,6 +73,7 @@ export async function getAIResponse(question: string): Promise<AIResponse> {
   } catch (error) {
     // Log a dev-only console warning for troubleshooting
     console.warn("[DEBUG] Gemini API call failed or timed out. Falling back to engine:", error);
+    console.log("Returning source: engine");
 
     // Graceful fallback to recommendation engine
     return {

@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { Message } from "@/types/stadium";
-import { getRecommendation } from "@/lib/recommendationEngine";
 import ChatMessages from "./ChatMessages";
 import ChatInput from "./ChatInput";
 
@@ -10,7 +9,8 @@ const INITIAL_MESSAGE: Message = {
   id: "welcome-message",
   sender: "assistant",
   timestamp: new Date(),
-  text: "👋 Welcome to StadiumBuddy.\n\nI'm your AI Stadium Companion.\n\nAsk me about:\n\n• Best gate\n• Crowd status\n• Accessibility\n• Transport\n• Sustainability\n• Emergency assistance"
+  text: "👋 Welcome to StadiumBuddy.\n\nI'm your AI Stadium Companion.\n\nAsk me about:\n\n• Best gate\n• Crowd status\n• Accessibility\n• Transport\n• Sustainability\n• Emergency assistance",
+  source: "engine"
 };
 
 export default function ChatContainer() {
@@ -31,43 +31,64 @@ export default function ChatContainer() {
     setMessages((prev) => [...prev, userMsg]);
     setIsTyping(true);
 
-    // 2. Simulate typing animation delay (500 - 700 ms)
-    const typingDelay = Math.floor(Math.random() * 200) + 500; // 500 to 700ms
+    const startTime = Date.now();
+    const minDelay = Math.floor(Math.random() * 200) + 500; // 500 to 700ms
 
-    setTimeout(() => {
+    (async () => {
       try {
-        // 3. Resolve recommendation from Phase 3 Engine
-        const result = getRecommendation(text);
+        const res = await fetch("/api/chat", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ question: text }),
+        });
+        if (!res.ok) {
+          throw new Error(`Failed to fetch from API chat endpoint: ${res.status}`);
+        }
+        const result = await res.json();
 
-        const assistantMsg: Message = {
-          id: `msg-${Date.now()}-assistant`,
-          sender: "assistant",
-          timestamp: new Date(),
-          text: result.recommendation || result.explanation,
-          title: result.title,
-          recommendation: result.recommendation,
-          explanation: result.explanation
-        };
+        const elapsed = Date.now() - startTime;
+        const remainingDelay = Math.max(0, minDelay - elapsed);
 
-        setMessages((prev) => [...prev, assistantMsg]);
+        setTimeout(() => {
+          const assistantMsg: Message = {
+            id: `msg-${Date.now()}-assistant`,
+            sender: "assistant",
+            timestamp: new Date(),
+            text: result.source === "gemini" ? result.explanation : (result.recommendation || result.explanation),
+            title: result.title,
+            recommendation: result.recommendation,
+            explanation: result.explanation,
+            source: result.source
+          };
+
+          setMessages((prev) => [...prev, assistantMsg]);
+          setIsTyping(false);
+        }, remainingDelay);
       } catch (error) {
-        console.error("Recommendation Engine Error:", error);
+        console.error("AI Service Error:", error);
 
-        // Graceful fallback display
-        const errorMsg: Message = {
-          id: `msg-${Date.now()}-error`,
-          sender: "assistant",
-          timestamp: new Date(),
-          text: "I encountered an error resolving your request. Please try again.",
-          title: "System Error",
-          recommendation: "System error occurred.",
-          explanation: "Please check your network and try again."
-        };
-        setMessages((prev) => [...prev, errorMsg]);
-      } finally {
-        setIsTyping(false);
+        const elapsed = Date.now() - startTime;
+        const remainingDelay = Math.max(0, minDelay - elapsed);
+
+        setTimeout(() => {
+          // Graceful fallback display
+          const errorMsg: Message = {
+            id: `msg-${Date.now()}-error`,
+            sender: "assistant",
+            timestamp: new Date(),
+            text: "I encountered an error resolving your request. Please try again.",
+            title: "System Error",
+            recommendation: "System error occurred.",
+            explanation: "Please check your network and try again.",
+            source: "engine"
+          };
+          setMessages((prev) => [...prev, errorMsg]);
+          setIsTyping(false);
+        }, remainingDelay);
       }
-    }, typingDelay);
+    })();
   };
 
   return (

@@ -29,7 +29,7 @@ export function getGeminiClient(): GoogleGenAI {
 }
 
 /**
- * Sends a minimal connection verification request using the lightweight gemini-2.5-flash model.
+ * Sends a minimal connection verification request using the lightweight gemini-flash-lite-latest model.
  * Catches all errors and returns a structured success status and message.
  */
 export async function testGeminiConnection(): Promise<{ success: boolean; message: string }> {
@@ -43,7 +43,7 @@ export async function testGeminiConnection(): Promise<{ success: boolean; messag
 
     const client = getGeminiClient();
     const response = await client.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-flash-lite-latest",
       contents: "Ping",
     });
 

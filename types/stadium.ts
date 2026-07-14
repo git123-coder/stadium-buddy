@@ -121,5 +121,6 @@ export interface Message {
   title?: string;
   recommendation?: string;
   explanation?: string;
+  source?: "gemini" | "engine";
 }
 
