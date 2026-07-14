@@ -1,346 +1,322 @@
 # 🏟️ StadiumBuddy – AI Stadium Companion for FIFA World Cup 2026
 
-> A fast, zero-login, AI-enabled web application that helps FIFA World Cup 2026 fans navigate stadiums through intelligent recommendations for crowd management, accessibility, transportation, sustainability, and real-time operational guidance.
+> An AI-powered web application that helps FIFA World Cup 2026 visitors navigate stadiums through intelligent recommendations for entrances, crowd conditions, accessibility, transportation, sustainability, and emergency assistance.
 
-![StadiumBuddy](https://img.shields.io/badge/AI-Stadium%20Assistant-00A86B)
-![Next.js](https://img.shields.io/badge/Next.js-TypeScript-black)
-![Tailwind](https://img.shields.io/badge/Tailwind-CSS-38BDF8)
-![Vercel](https://img.shields.io/badge/Deployed-Vercel-black)
-
----
-
-## 🌟 Overview
-
-**StadiumBuddy** is an AI-powered stadium companion designed for FIFA World Cup 2026 fans.
-
-It provides instant assistance for:
-
-- Finding the best stadium entrance
-- Managing crowd navigation
-- Supporting accessibility needs
-- Comparing transport options
-- Reducing environmental impact
-- Handling emergency situations
-
-The application provides a ChatGPT-style conversational experience where users can ask questions naturally or use quick actions to receive context-aware recommendations.
+![Next.js](https://img.shields.io/badge/Next.js-16-black)
+![React](https://img.shields.io/badge/React-19-61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6)
+![Gemini](https://img.shields.io/badge/Google-Gemini-blue)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38BDF8)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
 
-# 🎯 Why StadiumBuddy?
+# 🌟 Overview
 
-StadiumBuddy directly addresses major stadium challenges:
+**StadiumBuddy** is a conversational AI assistant designed for FIFA World Cup 2026 visitors.
 
-✅ Navigation  
-✅ Crowd Management  
-✅ Accessibility  
-✅ Transportation  
-✅ Sustainability  
-✅ Operational Intelligence  
-✅ AI-powered Decision Support  
-✅ Real-time Guidance  
+Instead of simply answering questions, StadiumBuddy combines:
 
----
+* Rule-based recommendations
+* Structured stadium knowledge
+* Google Gemini for natural language generation
+* Automatic fallback for reliability
 
-# 👥 Target Users
-
-- Stadium Fans
-- International Visitors
-- Families
-- First-time Visitors
-- Visitors with Accessibility Needs
-- Stadium Volunteers
+This hybrid architecture ensures responses remain **grounded, deterministic, and reliable**, while still benefiting from modern Generative AI.
 
 ---
 
-# 🚀 Core Features
+# ✨ Features
 
-## 1. 🤖 AI Stadium Assistant
+## 🤖 AI Stadium Assistant
 
-The primary interface of StadiumBuddy.
+Ask natural questions such as:
 
-Users can ask natural-language questions:
+* Which gate should I use?
+* Where is the nearest accessible entrance?
+* Which gate has the shortest queue?
+* What's the fastest transport option?
+* How do I reach the medical station?
+* Where is the nearest emergency exit?
 
-Examples:
-
-- "Which gate should I use?"
-- "Where is the nearest accessible entrance?"
-- "Which exit has the lowest crowd?"
-- "What's the fastest transport option?"
-- "Where can I get emergency help?"
-
-The assistant provides AI-style responses using:
-
-```
-
-User Question
-
-↓
-
-AI Assistant
-
-↓
-
-Local LLM (Ollama)
-
-↓
-
-Fallback Recommendation Engine
-
-↓
-
-Context-aware Response
-
-```
+The application automatically determines how to answer each request.
 
 ---
 
-# 2. 🚪 Smart Gate Recommendation
-
-Helps fans find the best stadium entrance.
-
-Inputs:
-
-- Stadium Section
-- Arrival Plaza
-- Fan Priority
-
-Priorities:
-
-- Fastest Entry
-- Least Crowded
-- Closest Gate
-- Accessible Route
-
-Output:
-
-- Recommended Gate
-- Walking Time
-- Estimated Waiting Time
-- Alternative Gate
-- Reasoning
-
-Example:
-
-```
-
-Gate C is recommended.
-
-Reason:
-
-* Lowest current crowd level
-* Shortest waiting time
-* Suitable for your stadium section
-
-```
-
----
-
-# 3. 📊 Crowd Intelligence Dashboard
-
-Provides simulated stadium crowd information.
-
-Example:
-
-```
-
-Gate A
-
-Heavy Crowd
-
-12 minutes
-
-Gate C
-
-Low Crowd
-
-2 minutes
-
-Gate E
-
-Medium Crowd
-
-5 minutes
-
-```
-
-The assistant also uses crowd information while generating recommendations.
-
----
-
-# 4. ♿ Accessibility Assistant
-
-Supports visitors requiring accessibility assistance.
-
-Provides information about:
-
-- Accessible entrances
-- Wheelchair routes
-- Elevators
-- Accessible restrooms
-- Medical stations
-- Assistance points
-
-Example:
-
-> Gate E is recommended because it provides wheelchair-friendly access, elevator availability, nearby assistance points, and low waiting time.
-
----
-
-# 5. 🌱 Smart Transport & Sustainability
-
-Compares transportation options:
-
-- Metro
-- Bus
-- Taxi
-- Walking
+## 🚪 Smart Gate Recommendations
 
 Provides:
 
-- Travel Time
-- Cost
-- Crowd Level
-- CO₂ Impact
-- Sustainability Score
-
-Example:
-
-```
-
-Recommended:
-
-Express Metro Line 1
-
-25 minutes
-
-$2.50
-
-Low Crowd
-
-Green Score: 92/100
-
-```
+* Recommended entrance
+* Estimated wait time
+* Crowd level
+* Accessibility information
+* Reasoning behind the recommendation
 
 ---
 
-# 🆘 Additional Utilities
+## 📊 Crowd Intelligence
 
-## Emergency Quick Actions
+Displays simulated operational data including:
 
-Provides quick access to:
+* Queue lengths
+* Crowd density
+* Estimated waiting times
+* Alternative entrances
 
-- Medical Help
-- Security
-- Lost Child Assistance
-- Emergency Exit Information
+---
+
+## ♿ Accessibility Assistant
+
+Provides guidance for:
+
+* Accessible entrances
+* Wheelchair routes
+* Elevators
+* Accessible restrooms
+* Assistance desks
+* Medical facilities
+
+---
+
+## 🚇 Smart Transport
+
+Compare transportation options by:
+
+* Travel time
+* Estimated cost
+* Crowd level
+* Recommended use case
+
+---
+
+## 🌱 Sustainability Guidance
+
+Shows:
+
+* Environmental impact
+* Green score
+* Estimated CO₂ savings
+* Sustainable travel recommendations
+
+---
+
+## 🆘 Emergency Assistance
+
+Quick access to:
+
+* Medical stations
+* Security
+* Emergency exits
+* Lost child assistance
+* Assembly areas
 
 ---
 
 ## 🌐 Multilingual Support
 
-Supported languages:
+Currently supports:
 
-- English
-- Hindi
-
-Implemented using local translation files without external translation APIs.
+* English
+* Hindi
 
 ---
 
 # 🧠 AI Architecture
 
-```
+StadiumBuddy uses a **hybrid AI architecture**.
+
+The recommendation engine remains the authoritative decision maker, while Gemini focuses on generating natural language.
 
 ```
-            StadiumBuddy
+                    User
 
-                  │
+                      │
 
-      Next.js + TypeScript
+                      ▼
 
-                  │
+              AI Chat Interface
 
-   AI Chat Interface + Quick Actions
+                      │
 
-                  │
+                      ▼
 
-      AI Stadium Assistant Layer
+              Intent Detector
 
-                  │
+                      │
 
-    ┌───────────────────────┐
-    │                       │
+                      ▼
 
-    ▼                       ▼
+          Stadium Knowledge Base
+
+                      │
+
+                      ▼
+
+           Recommendation Engine
+
+      (Determines the best answer)
+
+                      │
+
+                      ▼
+
+              Prompt Builder
+
+                      │
+
+          Is GEMINI_API_KEY set?
+
+             ┌────────┴────────┐
+
+            YES               NO
+
+             │                 │
+
+             ▼                 ▼
+
+      Google Gemini      Recommendation
+        API (BYOK)          Response
+
+             │                 │
+
+             └────────┬────────┘
+
+                      ▼
+
+               Final Chat Response
 ```
 
-Local Ollama        Recommendation Engine
+---
+
+# 🤖 Generative AI Integration
+
+## Bring Your Own Key (BYOK)
+
+StadiumBuddy supports **Bring Your Own Key (BYOK)**.
+
+Developers can optionally provide their own Gemini API key.
 
 ```
-    │                       │
-
-    └───────────┬───────────┘
-
-                │
-
-    Stadium Knowledge Base
-
-                │
-
-    Context-aware Response
+GEMINI_API_KEY=your_api_key
 ```
 
+No API key is stored in the repository.
+
+If no key is configured, StadiumBuddy automatically falls back to the built-in recommendation engine.
+
+---
+
+## Grounded AI Responses
+
+Gemini never answers directly from the user's question.
+
+Instead, StadiumBuddy first gathers relevant stadium information.
+
 ```
+User Question
+
+↓
+
+Intent Detector
+
+↓
+
+Knowledge Base
+
+↓
+
+Recommendation Engine
+
+↓
+
+Prompt Builder
+
+↓
+
+Gemini
+
+↓
+
+Natural Response
+```
+
+The prompt builder supplies:
+
+* Relevant stadium data
+* Recommendation engine output
+* Safety instructions
+* System prompt restricting hallucinations
+
+Gemini is instructed to:
+
+* Never invent stadium information
+* Use only supplied context
+* Clearly indicate when information is unavailable
+
+---
+
+## Automatic Fallback
+
+If any of the following occur:
+
+* API key missing
+* Invalid API key
+* API timeout
+* Rate limiting
+* Gemini service error
+
+The application automatically falls back to the recommendation engine.
+
+No user action is required.
+
+---
+
+## Response Indicators
+
+Assistant messages display their source.
+
+### AI Powered
+
+```
+🟢 AI Powered
+```
+
+Displayed when Gemini generated the response.
+
+### Recommendation Engine
+
+```
+⚙ Recommendation Engine
+```
+
+Displayed when the application uses its deterministic fallback.
 
 ---
 
 # ⚙️ Recommendation Engine
 
-The recommendation engine handles:
+The recommendation engine remains the core decision-making component.
 
-- Intent Detection
-- Context Matching
-- Recommendation Rules
-- Response Formatting
+Responsibilities include:
 
-Example:
+* Intent detection
+* Rule evaluation
+* Context selection
+* Stadium knowledge lookup
+* Recommendation generation
 
-```
-
-Question:
-
-Nearest wheelchair entrance?
-
-↓
-
-Intent:
-
-Accessibility
-
-↓
-
-Knowledge Base:
-
-Gate E
-
-↓
-
-Response:
-
-Gate E is recommended because...
-
-```
+Gemini improves **how** responses are written—not **what** the recommendation should be.
 
 ---
 
 # 📚 Knowledge Base
 
-Static JSON data powers recommendations.
+The application uses structured JSON datasets.
 
-Includes:
+Examples include:
 
 ```
-
 data/
 
 ├── gates.json
@@ -350,113 +326,91 @@ data/
 ├── sustainability.json
 ├── emergency.json
 └── translations/
-├── en.json
-└── hi.json
-
+    ├── en.json
+    └── hi.json
 ```
 
 Benefits:
 
-- No database dependency
-- Instant responses
-- Reliable demonstrations
-- Zero API cost
+* Fast lookups
+* Offline-friendly
+* Predictable recommendations
+* No database dependency
 
 ---
 
-# 🛠️ Tech Stack
+# 🛠 Tech Stack
 
 ## Frontend
 
-- Next.js
-- TypeScript
-- Tailwind CSS
-- shadcn/ui
+* Next.js 16
+* React 19
+* TypeScript
+* Tailwind CSS v4
+* shadcn/ui
 
-## AI Layer
+## AI
 
-- Chat Interface
-- Ollama Integration
-- Automatic Fallback Engine
+* Google Gemini
+* Prompt Engineering
+* Grounded Prompt Builder
+* Recommendation Engine
+* Automatic AI Fallback
 
 ## Logic
 
-- Intent Detection
-- Recommendation Engine
-- Rule-based Decision System
-
-## Data
-
-- Static JSON Knowledge Base
+* Intent Detection
+* Rule-Based Recommendation Engine
+* Static Knowledge Base
 
 ## Deployment
 
-- Vercel
+* Vercel
 
 ---
 
 # 📂 Project Structure
 
 ```
-
 app/
+├── api/
+│   └── chat/
+│       └── route.ts
 
 components/
 
-lib/
-
 data/
 
-types/
-
-tests/
+lib/
+├── aiService.ts
+├── gemini.ts
+├── intentDetector.ts
+├── knowledgeBase.ts
+├── promptBuilder.ts
+└── recommendationEngine.ts
 
 public/
 
+tests/
+
+types/
+
 README.md
 package.json
-
-````
-
----
-
-# 🧪 Testing
-
-Validated areas:
-
-- Intent Detection
-- Recommendation Engine
-- Gate Recommendation
-- Crowd Logic
-- Accessibility Rules
-- Transport Recommendation
-- AI Fallback Behaviour
-- Responsive UI
-
----
-
-# ♿ Accessibility
-
-Implemented:
-
-- Keyboard Navigation
-- ARIA Labels
-- High Contrast Design
-- Focus Indicators
-- Responsive Layout
-- Large Touch Targets
+```
 
 ---
 
 # 🔒 Security
 
-Implemented:
+StadiumBuddy follows a server-side AI architecture.
 
-- No exposed secrets
-- No cloud API keys
-- Input validation
-- Type-safe code
-- Safe fallback behaviour
+* Gemini API key never reaches the browser.
+* Gemini requests are routed through a server API endpoint.
+* No secrets are committed to Git.
+* Automatic fallback prevents exposing internal errors.
+
+Because Gemini is accessed server-side, users only receive the generated response—not the API credentials.
 
 ---
 
@@ -464,29 +418,55 @@ Implemented:
 
 Designed for:
 
-- Static data loading
-- No database overhead
-- No cold starts
-- Instant recommendations
-- Fast page loading
+* Instant JSON lookups
+* Lightweight recommendation engine
+* Server-side AI routing
+* Fast fallback
+* Minimal latency
+* No database
+
+---
+
+# 🧪 Testing
+
+Validated components include:
+
+* Intent detection
+* Recommendation engine
+* Prompt builder
+* Gemini integration
+* Automatic fallback
+* Accessibility recommendations
+* Crowd recommendations
+* Transport recommendations
+* Sustainability recommendations
+* Emergency guidance
+* Responsive UI
 
 ---
 
 # 🚀 Running Locally
 
-Clone repository:
+Clone the repository.
 
 ```bash
 git clone <repository-url>
-````
+cd stadium-buddy
+```
 
-Install dependencies:
+Install dependencies.
 
 ```bash
 npm install
 ```
 
-Run development server:
+Create a `.env.local` file.
+
+```env
+GEMINI_API_KEY=your_gemini_api_key
+```
+
+Start the development server.
 
 ```bash
 npm run dev
@@ -502,16 +482,37 @@ http://localhost:3000
 
 # 🌍 Deployment
 
-Deployed using:
+The application is designed for deployment on platforms such as Vercel.
 
-* GitHub
-* Vercel
+Environment variables required:
 
-No requirement for:
+```
+GEMINI_API_KEY
+```
 
-❌ Database
-❌ Authentication
-❌ Docker
-❌ Cloud AI APIs
-❌ External Maps
-❌ Real-time servers
+No additional infrastructure is required.
+
+* ❌ Database
+* ❌ Authentication
+* ❌ Docker
+* ❌ External Maps
+* ❌ Real-time Servers
+
+---
+
+# 💡 Design Philosophy
+
+StadiumBuddy intentionally separates decision making from language generation.
+
+* The **Recommendation Engine** decides the correct recommendation using structured stadium data.
+* The **Prompt Builder** grounds the AI with relevant context.
+* **Google Gemini** rewrites the recommendation into natural, conversational language.
+* Automatic fallback ensures the application remains fully functional even without an AI model.
+
+This hybrid approach provides the reliability of deterministic software with the usability of Generative AI.
+
+---
+
+# 📄 License
+
+This project is intended for educational, demonstration, and portfolio purposes.
