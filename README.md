@@ -1,6 +1,6 @@
 # 🏟️ StadiumBuddy – AI Stadium Companion for FIFA World Cup 2026
 
-> An AI-powered web application that helps FIFA World Cup 2026 visitors navigate stadiums through intelligent recommendations for entrances, crowd conditions, accessibility, transportation, sustainability, and emergency assistance.
+An AI-powered web application that helps FIFA World Cup 2026 visitors navigate stadiums through intelligent recommendations for entrances, crowd conditions, accessibility, transportation, sustainability, and emergency assistance.
 
 > **Project Context:** Built during **Google Prompt Wars** as a rapid prototype within the competition timeline.
 
